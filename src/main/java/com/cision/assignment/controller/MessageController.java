@@ -14,14 +14,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cision.assignment.model.Message;
 import com.cision.assignment.repository.MessageRepository;
+import com.cision.assignment.service.MessageService;
 
 @Controller
 public class MessageController {
 	
 	@Autowired
 	protected MessageRepository messageRepository;
+	
+	@Autowired
+	protected MessageService messageService;
+	
 	@RequestMapping(value = "/postcontent", consumes = "application/json")
     public @ResponseBody boolean postMessage(@Valid @RequestBody Message message) {
+		messageService.calculateLongestPalindromeSize(message);
 		messageRepository.save(message);
         return true;
     }
