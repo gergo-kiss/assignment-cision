@@ -1,5 +1,7 @@
 package com.cision.assignment.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -23,4 +25,13 @@ public class MessageController {
 		messageRepository.save(message);
         return true;
     }
+	
+	@RequestMapping(value = "/getmessages", method = RequestMethod.GET)
+	@ResponseBody
+    public List<Message> getMessages() {
+		List<Message> messages = new ArrayList<>();
+		messageRepository.findAll().forEach(messages::add);
+		return messages;
+	}
+	
 }
