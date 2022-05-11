@@ -1,11 +1,25 @@
 package com.cision.assignment.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.cision.assignment.model.Message;
+import com.cision.assignment.model.MessagePresentationObj;
 
 @Service
 public class MessageService {
+	
+	public List<MessagePresentationObj> convertMessagesToPresentableObj(List<Message> messageList) {
+		List<MessagePresentationObj> resultList = new ArrayList<>();
+		
+		for(Message msg : messageList) {
+			resultList.add(new MessagePresentationObj(msg));
+		}
+		
+		return resultList;
+	}
 	
 	public void calculateLongestPalindromeSize(Message message) {
 		// Length of message.getContent()ing message.getContent()
@@ -71,7 +85,7 @@ public class MessageService {
 	    }
 	     
 	    // Return length of LPS
-	    System.out.println(maxLength);
+	    //System.out.println(maxLength);
 	    message.setLongestPalindromeSize(maxLength);
 	}
 	

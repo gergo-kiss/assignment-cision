@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cision.assignment.model.Message;
+import com.cision.assignment.model.MessagePresentationObj;
 import com.cision.assignment.repository.MessageRepository;
 import com.cision.assignment.service.MessageService;
 
@@ -34,10 +35,11 @@ public class MessageController {
 	
 	@RequestMapping(value = "/getmessages", method = RequestMethod.GET)
 	@ResponseBody
-    public List<Message> getMessages() {
+    public List<MessagePresentationObj> getMessages() {
 		List<Message> messages = new ArrayList<>();
 		messageRepository.findAll().forEach(messages::add);
-		return messages;
+		
+		return messageService.convertMessagesToPresentableObj(messages);
 	}
 	
 }
