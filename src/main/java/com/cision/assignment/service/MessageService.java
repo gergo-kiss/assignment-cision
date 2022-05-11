@@ -23,6 +23,12 @@ public class MessageService {
 	
 	public void calculateLongestPalindromeSize(Message message) {
 		// Length of message.getContent()ing message.getContent()
+		
+		if(message.getContent() == "" || message.getContent() == null) {
+			message.setLongestPalindromeSize(0);
+			return;
+		}
+		
 	    int n = message.getContent().length();
 	 
 	    // Stores the dp states

@@ -2,10 +2,15 @@ package com.cision.assignment.model;
 
 import java.time.ZonedDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MessagePresentationObj {
 	
 	private String content;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd' 'HH:mm:ssZ")
 	private ZonedDateTime timestamp;
+	
 	private Integer longestPalindromeSize;
 	
 	public String getContent() {
